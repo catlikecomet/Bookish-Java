@@ -15,7 +15,6 @@ public class TechnologyService extends DatabaseService {
                         .list()
         );
     }
-
     public void addTechnology(Technology technology) {
         jdbi.useHandle(handle ->
                 handle.createUpdate("INSERT INTO technologies (name, logoUrl) VALUES (:name, :logoUrl)")

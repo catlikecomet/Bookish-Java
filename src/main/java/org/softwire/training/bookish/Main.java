@@ -4,6 +4,7 @@ import org.apache.tomcat.jni.Library;
 import org.jdbi.v3.core.Jdbi;
 import org.softwire.training.bookish.models.database.Book;
 
+import javax.swing.*;
 import java.sql.*;
 import java.util.List;
 
@@ -64,17 +65,19 @@ public class Main {
         Jdbi jdbi = Jdbi.create(connectionString);
 
         List<Book> books = jdbi.withHandle(handle ->{
-            handle.createUpdate("INSERT INTO Books(bookId, ISBN, Title, Author, Descrip, Genre) VALUES (:bookId, :ISBN, :Title, :Author, :Descrip, :Genre)")
-                    .bind("bookId", )
+//            handle.createUpdate("INSERT INTO Books(bookId, ISBN, Title, Author, Descrip, Genre) VALUES (:bookId, :ISBN, :Title, :Author, :Descrip, :Genre)")
+//                    .bind("bookId", )
 
             return handle.createQuery("SELECT * FROM Books")
                     .mapToBean(Book.class)
                     .list();
                 });
+        for(int x =0; x <books.size(); x++) {
+            System.out.println(books.get(x).getBookId()+ " "+books.get(x).getISBN()+ " "+books.get(x).getTitle()+" "+books.get(x).getAuthor()+" "+books.get(x).getDescrip()+" "+books.get(x).getGenre());
 
+           // System.out.println();
 
-
-
+        }
 
     }
 }
