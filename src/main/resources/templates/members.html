@@ -5,8 +5,44 @@
     <title>Bookish - Members</title>
 
     <link rel="stylesheet" href="/styles/general.css"/>
+    <link rel="stylesheet" href="/styles/navbar.css"/>
 </head>
+
 <body>
+
+    <div th:replace="fragments/navbar :: navbar">
+    </div>
+    <div class="container">
+        <h2>List of Members:</h2>
+
+        <div class="member-list">
+            <div th:each="member : ${model.members}" class="member">
+                <!--<img th:title="${member.Named}" />-->
+
+                <a th:href="${'/member/edit-member?userId=' + user.id}" class="edit-button">edit</a>
+                <a th:href="${'/member/delete-member?userId=' + user.id}" class="delete-button">delete</a>
+
+            </div>
+        </div>
+
+        <h2>Add a Member:</h2>
+        <form th:action="@{/member/add-member}" method="post">
+            <div class="add-member-row">
+                <label>
+                    <span>Name: </span>
+                    <input type="text" name="name">
+                </label>
+            </div>
+            <div class="add-member-row">
+                <span><!-- spacer --></span>
+                <input type="submit" value="Add member" />
+            </div>
+        </form>
+    </div>
+
+
+
+
 
 </body>
 </html>
