@@ -17,9 +17,7 @@ public class MemberService extends DatabaseService{
 
     public void addMember(Member member) {
         jdbi.useHandle(handle ->
-                handle.createUpdate("INSERT INTO Members (UserName, Pass, Named) VALUES (:UserName, :Pass, :Named)")
-                        .bind("UserName", member.getUserName())
-                        .bind("Pass", member.getPass())
+                handle.createUpdate("INSERT INTO Members (Named) VALUE (:Named)")
                         .bind("Named", member.getNamed())
                         .execute()
         );

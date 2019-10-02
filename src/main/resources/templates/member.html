@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<!--@thymesVar id="model" type="org.softwire.training.bookish.models.page.MemberPageModel"-->
 
 <head>
     <title>Bookish - Members</title>
@@ -16,33 +17,28 @@
         <h2>List of Members:</h2>
 
         <div class="member-list">
-            <div th:each="member : ${model.members}" class="member">
-                <!--<img th:title="${member.Named}" />-->
+            <div th:each="member : ${model.members}" class="members">
+                <span  th:text="${member.Named}" />
 
-                <a th:href="${'/member/edit-member?userId=' + user.id}" class="edit-button">edit</a>
-                <a th:href="${'/member/delete-member?userId=' + user.id}" class="delete-button">delete</a>
+                <a th:href="${'/members/edit-member?userId=' + member.userId}" class="delete-button">edit</a>
+                <a th:href="${'/members/delete-member?userId=' + member.userId}" class="delete-button">delete</a>
 
             </div>
         </div>
 
         <h2>Add a Member:</h2>
-        <form th:action="@{/member/add-member}" method="post">
+        <form th:action="@{/members/add-member}" method="post">
             <div class="add-member-row">
                 <label>
                     <span>Name: </span>
-                    <input type="text" name="name">
+                    <input type="text" name="Named">
                 </label>
             </div>
-            <div class="add-member-row">
+            <div class="add-tech-row">
                 <span><!-- spacer --></span>
                 <input type="submit" value="Add member" />
             </div>
         </form>
     </div>
-
-
-
-
-
 </body>
 </html>
