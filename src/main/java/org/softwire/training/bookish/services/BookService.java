@@ -17,7 +17,7 @@ import java.util.List;
 
         public void addBook(Book book) {
             jdbi.useHandle(handle ->
-                    handle.createScript("INSERT INTO Books (ISBN, Title, Author, Descrip, Genre) VALUES (:ISBN, :Title, :Author, :Descrip, :Genre)")
+                    handle.createUpdate("INSERT INTO Books (ISBN, Title, Author, Descrip, Genre) VALUES (:ISBN, :Title, :Author, :Descrip, :Genre)")
                             .bind("ISBN", book.getISBN())
                             .bind("Title", book.getTitle())
                             .bind("Author", book.getAuthor())
@@ -37,13 +37,22 @@ import java.util.List;
 
         public void editBook (Book book) {
             jdbi.useHandle( handle ->
-                    handle.createUpdate("UPDATE Books SET ISBN = :ISBN, Title = :Title, Author = :Author, Descrip = :Descrip, Genre = :Genre WHERE UserId = :UserId")
+                    handle.createUpdate("UPDATE Books SET ISBN = :ISBN, Title = :Title, Author = :Author, Descrip = :Descrip, Genre = :Genre WHERE bookId = :bookId")
                             .bind("ISBN", book.getISBN())
                             .bind("Title", book.getTitle())
                             .bind("Author", book.getAuthor())
                             .bind("Descript", book.getDescrip())
                             .bind("Genre", book.getGenre())
                             .execute()
+            );
+        }
+
+        public Book getBookFromID(int bookId) {
+                return jdbi.withHandle(handle ->
+                        handle.createQuery("SELECT * FROM Books WHERE BookId = :BookId")
+                                .mapTo(Book.class)
+                                .findOnly()
+
             );
         }
     }

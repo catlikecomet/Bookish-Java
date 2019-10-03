@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--@thymesVar id="model" type="org.softwire.training.bookish.models.page.BookPageModel"-->
+
+<head>
+    <title>Bookish - Members</title>
+
+    <link rel="stylesheet" href="/styles/general.css"/>
+    <link rel="stylesheet" href="/styles/navbar.css"/>
+</head>
+
+<body>
+
+<div th:replace="fragments/navbar :: navbar">
+</div>
+<div class="container">
+    <h2>List of Books:</h2>
+
+    <div class="book-list">
+        <div th:each="book : ${model.books}" class="books">
+            <span  th:text="${book.Title}" />
+
+            <a th:href="${'/books/edit-book?bookId=' + book.bookId}" class="edit-button">edit</a>
+            <a th:href="${'/books/delete-book?bookId=' + book.bookId}" class="delete-button">delete</a>
+
+        </div>
+    </div>
+
+    <h2>Add a Book:</h2>
+    <form th:action="@{/books/add-book}" method="post">
+        <div class="add-book-row">
+            <label>
+                <span>ISBN: </span>
+                <input type="text" name="ISBN">
+            </label>
+        </div>
+            <div class="add-book-row">
+            <label>
+                <span>Title: </span>
+                <input type="text" name="Title">
+            </label>
+            </div>
+            <div class="add-book-row">
+            <label>
+                <span>Author: </span>
+                <input type="text" name="Author">
+            </label>
+            </div>
+                <div class="add-book-row">
+            <label>
+                <span>Description: </span>
+                <input type="text" name="Descrip">
+            </label>
+                </div>
+        <div class="add-book-row">
+            <label>
+                <span>Genre: </span>
+                <input type="text" name="Genre">
+            </label>
+        </div>
+        <div class="add-tech-row">
+            <span><!-- spacer --></span>
+            <input type="submit" value="Add book" />
+        </div>
+    </form>
+</div>
+</body>
+</html>

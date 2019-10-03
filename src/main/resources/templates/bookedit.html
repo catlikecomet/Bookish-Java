@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--@thymesVar id="model" type="org.softwire.training.bookish.models.page.BookPageModel"-->
+
+<head>
+    <title>Bookish - Edit Books</title>
+
+    <link rel="stylesheet" href="/styles/general.css"/>
+    <link rel="stylesheet" href="/styles/navbar.css"/>
+</head>
+
+<body>
+
+<div th:replace="fragments/navbar :: navbar">
+</div>
+<div class="container">
+
+    <h2>Edit a Book:</h2>
+    <form th:action="${'/books/confirm-edit-book?bookId=' + model}" method="post">
+        <!--            <input type="text" name="bookId" value="${model.bookId}" hidden>-->
+        <div class="confirm-edit-book-row">
+            <label>
+                <span>New ISBN: </span>
+                <input type="text" th:value="${model.ISBN}" name="ISBN">
+            </label>
+        </div>
+        <div class="confirm-edit-book-row">
+            <label>
+                <span>New Title: </span>
+                <input type="text" value="Title" name="Title">
+            </label>
+        </div>
+        <div class="confirm-edit-book-row">
+            <label>
+                <span>New Author: </span>
+                <input type="text" value="Author" name="Author">
+            </label>
+        </div>
+        <div class="confirm-edit-book-row">
+            <label>
+                <span>New Description: </span>
+                <input type="text" Value="Descrip" name="Descrip">
+            </label>
+        </div>
+        <div class="confirm-edit-book-row">
+            <label>
+                <span>New Genre: </span>
+                <input type="text" value="Genre" name="Genre">
+            </label>
+        </div>
+        <div class="add-tech-row">
+            <span><!-- spacer --></span>
+            <input type="submit" value="Update book" />
+        </div>
+    </form>
+</div>
+</body>
+</html>
