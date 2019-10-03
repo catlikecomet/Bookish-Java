@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--@thymesVar id="model" type="org.softwire.training.bookish.models.page.MemberPageModel"-->
+
+<head>
+    <title>Bookish - Edit Members</title>
+
+    <link rel="stylesheet" href="/styles/general.css"/>
+    <link rel="stylesheet" href="/styles/navbar.css"/>
+</head>
+
+<body>
+
+    <div th:replace="fragments/navbar :: navbar">
+    </div>
+    <div class="container">
+
+        <h2>Edit a Member:</h2>
+        <form th:action="${'/members/confirm-edit?userId=' + model}" method="post">
+<!--            <input type="text" name="userId" value="${model.userId}" hidden>-->
+            <div class="confirm-edit-row">
+                <label>
+                    <span>New Name: </span>
+                    <input type="text" name="Named">
+
+                </label>
+            </div>
+            <div class="add-tech-row">
+                <span><!-- spacer --></span>
+                <input type="submit" value="Update member" />
+            </div>
+        </form>
+    </div>
+</body>
+</html>

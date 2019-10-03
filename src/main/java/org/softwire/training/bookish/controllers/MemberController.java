@@ -51,10 +51,16 @@ import java.util.List;
     }
 
     @RequestMapping("/edit-member")
-        RedirectView editMember(@RequestParam Member member){
+        ModelAndView editMember(@RequestParam int userId){
+
+           //memberService.editMember(userId);
+
+        return new ModelAndView("memberedit", "model", userId);
+    }
+    @RequestMapping("/confirm-edit")
+        RedirectView confirmEdit(@ModelAttribute Member member){
 
            memberService.editMember(member);
-
            return new RedirectView("/members");
     }
 }

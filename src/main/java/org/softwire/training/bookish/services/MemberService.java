@@ -35,6 +35,7 @@ public class MemberService extends DatabaseService{
         jdbi.useHandle( handle ->
                 handle.createUpdate("UPDATE Members SET Named = :Named WHERE UserId = :UserId")
                         .bind("Named", member.getNamed())
+                        .bind("UserId", member.getUserId())
                         .execute()
         );
     }

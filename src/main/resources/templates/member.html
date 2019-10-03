@@ -20,7 +20,7 @@
             <div th:each="member : ${model.members}" class="members">
                 <span  th:text="${member.Named}" />
 
-                <a th:href="${'/members/edit-member?userId=' + member.userId}" class="delete-button">edit</a>
+                <a th:href="${'/members/edit-member?userId=' + member.userId}" class="edit-button">edit</a>
                 <a th:href="${'/members/delete-member?userId=' + member.userId}" class="delete-button">delete</a>
 
             </div>
